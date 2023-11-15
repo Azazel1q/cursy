@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\Course;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,8 @@ class CategoryController extends Controller
                 "title"=>"required|string",
 
             ],[
-                "title.required"=>"Не спеши",
-                "title.string"=>"Только буквы",
+                "title.required"=>"Зполните поле",
+                "title.string"=>"Зполните поле",
             ]);
         $category_info = $request->all();
         Category::create([

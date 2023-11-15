@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Storage;
 class CourseController extends Controller
 {
     public function index(){
-        $courses = Course::all();
-        return view("index",["courses"=>$courses]);
+        $courses = Course::paginate(3);
+        return view("index",["courses"=>$courses], compact('courses'));
     }
 
     public function create(Request $request){
@@ -22,13 +22,13 @@ class CourseController extends Controller
             "cost"=>"required|integer",
             "image"=>"required",
         ],[
-            "title.required"=>"Не спеши",
-            "description.required"=>"Это тоже надо",
-            "duration.required"=>"Снова поспешил",
-            "duration.integer"=>"Цфры только",
-            "cost.required"=>"Как деньги",
-            "cost.integer"=>"Цфры надо",
-            "image.required"=>"Картинку выбери",
+            "title.required"=>"Зполните поле",
+            "description.required"=>"Зполните поле",
+            "duration.required"=>"Зполните поле",
+            "duration.integer"=>"Зполните поле",
+            "cost.required"=>"Зполните поле",
+            "cost.integer"=>"Зполните поле",
+            "image.required"=>"Выберите картинку",
         ]);
         $course_info = $request->all();
         $file = $request->file("image");
