@@ -40,3 +40,6 @@ Route::get('/lk', function(){
     return view('lk');
 });
 Route::get('/', [CourseController::class, "index"]);
+
+// Route::get('/categories', [CategoryController::class, "index"]);
+Route::get('/categoriesdetail/{id}', [CategoryController::class, "show"]);

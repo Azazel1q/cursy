@@ -60,9 +60,12 @@
 
 
                 <section id="courses">
-
                     <div class="container">
                         <h2 class="m-3">Наши курсы</h2>
+                        <div class="filters">
+                            <a href="categoriesdetail/2">Дизайн</a>
+                            <a href="categoriesdetail/1">Программирование</a>
+                        </div>
                         <div class="d-flex">
                         @foreach ($courses as $item)
                         <div class="card" style="width: 18rem;">
@@ -77,52 +80,51 @@
                           </div>
                         @endforeach
                       </div>
-                      {{ $courses->withQueryString()->links('pagination::bootstrap-5') }}
+                      {{-- {{ $courses->withQueryString()->links('pagination::bootstrap-5') }} --}}
                     </div>
                 </section>
 
 
 
-<section id="enroll">
-    <div class="container">
-        <h2 class="m-3">Оставить заявку</h2>
-<form method="POST" action="/enroll">
-  @csrf
+                <section id="enroll">
+                    <div class="container">
+                        <h2 class="m-3">Оставить заявку</h2>
+                        <form method="POST" action="/enroll">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Ваш email</label>
+                            <input type="email" class="form-control" id="email" name="email">
+                            @error('email')
+                            <div class="alert alert-danger" role="alert">
+                              {{$message}}
+                            </div>
+                            @enderror
 
-    <div class="mb-3">
-        <label for="email" class="form-label">Ваш email</label>
-        <input type="email" class="form-control" id="email" name="email">
-        @error('email')
-        <div class="alert alert-danger" role="alert">
-          {{$message}}
-        </div>
-        @enderror
+                        </div>
 
-    </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ваше имя</label>
+                            <input type="name" class="form-control" id="name" name="name">
+                            @error('name')
+                            <div class="alert alert-danger" role="alert">
+                              {{$message}}
+                            </div>
+                            @enderror
 
-    <div class="mb-3">
-        <label for="name" class="form-label">Ваше имя</label>
-        <input type="name" class="form-control" id="name" name="name">
-        @error('name')
-        <div class="alert alert-danger" role="alert">
-          {{$message}}
-        </div>
-        @enderror
+                        </div>
 
-    </div>
-
-    <div class="mb-3">
-    <label for="name" class="form-label">Выберите курс</label>
-    <select class="form-control" name="course">
-      @foreach ($courses as $item)
-      <option value="{{$item->id}}">{{$item->title}}</option>
-      @endforeach
-    </select>
-  </div>
-      <button class="btn btn-primary" type="submit">Отправить
-  </form>
-</div>
-</section>
+                        <div class="mb-3">
+                        <label for="name" class="form-label">Выберите курс</label>
+                        <select class="form-control" name="course">
+                          @foreach ($courses as $item)
+                          <option value="{{$item->id}}">{{$item->title}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                          <button class="btn btn-primary" type="submit">Отправить
+                      </form>
+                    </div>
+                </section>
 
       </main>
 </body>

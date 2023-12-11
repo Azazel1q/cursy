@@ -15,4 +15,8 @@ class Course extends Model
         "image",
         "category_id",
     ];
+
+    public function category() {
+        return $this->hasOne(Category::class);
+    }
 }
